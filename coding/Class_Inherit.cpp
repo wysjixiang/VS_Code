@@ -5,10 +5,14 @@
 
 
 
+
+
+
+
 int main()
 {
 
-
+    int a;
 
 
     system("pause");
