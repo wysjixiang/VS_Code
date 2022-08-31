@@ -14,6 +14,7 @@ int main()
 
     int a;
     int b;
+    int c;
 
     system("pause");
     return 0;
