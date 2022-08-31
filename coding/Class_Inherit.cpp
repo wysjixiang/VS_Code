@@ -12,9 +12,7 @@
 int main()
 {
 
-    int a;
-    int b;
-    int c;
+    int k;
 
     system("pause");
     return 0;
