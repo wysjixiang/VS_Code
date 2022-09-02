@@ -3,23 +3,18 @@
 
 
 /*********************************************
-虚继承：
+多继承：
 
-在多继承的基础上，派生类可能继承了基类的很多属性，有可能
-就有相同的，比如name。而我们只需要一个name即可，但是在多
-继承的情况下，必然是包含了多种name属性。
-为了解决这个问题，引入虚继承。
+如果派生类只有一个基类，称为单继承。
+如果一个派生类有两个或者多个基类，则称为多继承
+多继承容易让代码逻辑复杂、思路混乱，一直备受争议，
+中小型项目中较少使用，后来的 Java、C#、PHP 等干脆取消了多继承。
 
-通过虚继承某个基类，就是在告诉编译器：从当前这个类再派生
-出来的子类只能拥有那个基类的一个实例
+多继承的语法也很简单，将多个基类用逗号隔开即可。例如已声明了
+类A、类B和类C，那么可以这样来声明派生类D：
 
-虚继承的语法：在基类前加上virtual即可
-class Teacher: virtual public Person
-
-此时查看析构函数的输出，会发现，这种情况下Person类只有一个
-实例，因为Student和Teacher都是虚继承，所以没有拷贝。
-
-
+class D: public A, private B, protected C{
+    //类D新增加的成员
 }
 
 
@@ -44,7 +39,7 @@ protected:
         std::string classes;
 };
 
-class Student: virtual public Person
+class Student:public Person
 {
 public:
     Student(std::string name,std::string classes);
@@ -72,7 +67,7 @@ void Student::Introduce()
 }
 
 
-class Teacher: virtual public Person
+class Teacher:public Person
 {
 public:
     Teacher(std::string name,std::string classes);
@@ -113,10 +108,8 @@ std::string classes);
 
 };
 
-//注意这里！ 最后构造函数要加上基类的（Person）
 TeacherStudent::TeacherStudent(std::string name,
-std::string classes):Student(name,classes),Teacher(name,classes),
-Person(name,classes)    
+std::string classes):Student(name,classes),Teacher(name,classes)
 {
 
 }
@@ -127,9 +120,9 @@ Person(name,classes)
 void TeacherStudent::Introduce()
 {
     std::cout<< "I am a teacher & student";
-    std::cout<< "My name is "<< name;  
+    std::cout<< "My name is "<< Student::name;  
     std::cout<< "I'm teaching in class: "<< 
-    classes <<std::endl;
+    Student::classes <<std::endl;
 }
 
 
