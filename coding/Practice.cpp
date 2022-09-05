@@ -3,144 +3,56 @@
 
 
 /*********************************************
-虚继承：
+浅拷贝、拷贝构造函数(副本构造函数)：
+    我们可以把一个对象赋值给一个类型与之相同的变量，编译器将生产
+必要的代码把源对象各属性的值分别赋值给目标对象的对应成员。这种
+赋值行为称之为逐位复制，也就是浅拷贝！
+    这种行为在绝大多数场合都没有问题，但如果某些成员变量是指针的
+话，对象成员逐位复制的结果是你将拥有两个一摸一样的实例，而这两个
+副本里的同名指针会指向同一个地址！！这样当删除其中一个对象时，它
+包含的指针也会被删除，但不巧另一个对象又引用了这个指针，就会造成
+不可预估的后果！！！
+    编译器为类指定了一个默认的副本构造函数，我们也可以手动指定副本构
+造函数。如果指定了副本构造函数，则进行副本复制时，只会对副本构造函数中指定
+的变量进行初始化。
+    如果未指定副本构造函数，则进行副本复制时，主体中所有已经初始化的变
+量在副本中也同样都会被初始化，初始化的值与主体相同。
 
-在多继承的基础上，派生类可能继承了基类的很多属性，有可能
-就有相同的，比如name。而我们只需要一个name即可，但是在多
-继承的情况下，必然是包含了多种name属性。
-为了解决这个问题，引入虚继承。
 
-通过虚继承某个基类，就是在告诉编译器：从当前这个类再派生
-出来的子类只能拥有那个基类的一个实例
+解决策略->深拷贝：
+    自己编写拷贝构造函数！即可在构造函数里面改写，重新为自己的指针
+在堆区开辟一个内存，在将传递的参数值保存即可。这样指针指向的地址就
+和传递进来的参数的地址区分开了。
 
-虚继承的语法：在基类前加上virtual即可
-class Teacher: virtual public Person
-
-此时查看析构函数的输出，会发现，这种情况下Person类只有一个
-实例，因为Student和Teacher都是虚继承，所以没有拷贝。
-
-
-}
 
 
 
 *********************************************/
-
-class Person
-{
-public:
-    Person(std::string Name,std::string Classes)
-    {
-        name = Name;
-        classes = Classes;
-    }
-    virtual ~Person()
-    {
-
-        std::cout<< "Person Destructor!\n"<<std::endl;
-    }
-protected:
-        std::string name;
-        std::string classes;
-};
-
-class Student: virtual public Person
-{
-public:
-    Student(std::string name,std::string classes);
-    virtual ~Student();
-    virtual void Introduce();
-
-};
-
-Student:: Student(std::string name,std::string classes):
-Person(name,classes)
-{
-}
-
-Student::~Student()
-{
-    std::cout<< "Student Destructor!\n"<<std::endl;
-}
-
-void Student::Introduce()
-{
-
-    std::cout<< "I am a student";
-    std::cout<< "My name is "<< name;
-    std::cout<< "I'm studying in class: "<< classes <<std::endl;
-}
-
-
-class Teacher: virtual public Person
-{
-public:
-    Teacher(std::string name,std::string classes);
-    virtual ~Teacher();
-    virtual void Introduce();
-
-};
-
-Teacher:: Teacher(std::string name,std::string classes):
-Person(name,classes)
-{
-}
-
-Teacher::~Teacher()
-{
-    std::cout<< "Teacher Destructor!\n"<<std::endl;
-}
-
-void Teacher::Introduce()
-{
-
-    std::cout<< "I am a teacher";
-    std::cout<< "My name is "<< name;
-    std::cout<< "I'm teaching in class: "<< classes <<std::endl;
-}
-
-
-class TeacherStudent: public Student, public Teacher
-{
-public:
-    TeacherStudent(std::string name,
-std::string classes);
-    ~TeacherStudent()
-    {
-        std::cout<< "TeacherStudent Destructor!\n"<<std::endl;
-    }
-    void Introduce();
-
-};
-
-//注意这里！ 最后构造函数要加上基类的（Person）
-TeacherStudent::TeacherStudent(std::string name,
-std::string classes):Student(name,classes),Teacher(name,classes),
-Person(name,classes)    
-{
-
-}
-
-//注意这个函数。因为多继承的两个父对象，Teacher和Student都包含
-//name，class这个属性，因此子类包含了两个name和两个class属性
-//所以不指定范围的话，是会报错的！
-void TeacherStudent::Introduce()
-{
-    std::cout<< "I am a teacher & student";
-    std::cout<< "My name is "<< name;  
-    std::cout<< "I'm teaching in class: "<< 
-    classes <<std::endl;
-}
 
 
 
 
 int main()
 {
-    TeacherStudent *a = new TeacherStudent("little pig","class 1");
-    a->Introduce();
-    
-    delete a;
+    unsigned int count;
+
+    std::cout<<"Please input a number:"<<std::endl;
+
+    std::cin >> count;
+
+    int *p = new int[count];
+
+    for(int i=0; i<count; i++)
+    {
+        p[i] = i;
+    }
+
+    for(int i=0; i<count; i++)
+    {
+        std::cout<< "p["<< i <<"]= "<< p[i] << std::endl;
+    }
+
+    delete [] p;
 
     return 0;
 }
