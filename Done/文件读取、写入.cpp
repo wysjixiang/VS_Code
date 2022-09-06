@@ -23,7 +23,7 @@ int main()
     char str;
     while( (str= ofs.get()) != EOF  )
     {
-
+        
         std::cout<< str;
     }
 
