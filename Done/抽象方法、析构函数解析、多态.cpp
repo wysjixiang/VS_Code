@@ -69,6 +69,28 @@ public:
 
 };
 
+class Cat : public Pet
+{
+public:
+    Cat(){};
+    ~Cat()
+    {
+        std::cout<<"Cat destructor!\n"<<std::endl;
+    }
+
+    void play()
+    {
+
+        std::cout<<"Cat playing!\n"<<std::endl;
+    }
+
+};
+
+void DoSpeak(Pet & pet)
+{
+    pet.play();
+}
+
 
 
 int main()
@@ -78,13 +100,24 @@ int main()
                         //多态要和虚函数搭配使用！
     dog->play();
 
-
 //一定要记得加上delete代码！ 否则内存不会释放的！
 //delete之后，会先执行子类的析构，再执行基类的析构
 //如果基类的析构不声明为虚函数，那么只会执行基类的析构，
 //而子类的析构函数不执行，也就意味着子类的内存没有释放！
 //这样会造成内存泄漏，所以基类都要用虚函数析构器
     delete dog; 
+
+    Pet *cat = new Cat; //声明基类类型的指针。多态的用法！
+                        //多态要和虚函数搭配使用！
+    cat->play();    
+
+    delete cat;     
+
+    Dog dog1;
+    Cat cat1;
+    DoSpeak(dog1);
+    DoSpeak(cat1);
+
 
 
     return 0;

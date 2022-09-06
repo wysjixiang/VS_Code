@@ -25,6 +25,14 @@
 和传递进来的参数的地址区分开了。
 
 
+解决策略->赋值运算符重载：赋值运算符 operator=, 对属性进行值拷贝
+
+<返回类型> operator <运算符符号>（<参数>）
+{
+	<定义>;
+}
+
+
 *********************************************/
 
 
@@ -34,11 +42,8 @@ class Person
 public:
     Person(std::string Name, int cnt)
     {
-        char* p = new char[cnt];
-        Name.copy(p,cnt,0);
-        name = p;
-        p = NULL;
-        
+        name = new char[cnt];
+        Name.copy(name,cnt,0);
     }
 
     ~Person()
