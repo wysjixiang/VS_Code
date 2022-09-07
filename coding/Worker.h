@@ -41,14 +41,14 @@ protected:
 void Employee::ShowInfo()
 {
     std::cout<< "职工编号： " <<this->ZGBH << "  ";
-    std::cout<< "职工姓名:  "<<this->NAME << "  ";
+    std::cout<< "职工姓名:  "<<this->NAME << "      ";
     std::cout<< "部门编号:  "<<this->BMBH << "  ";
     std::cout<< "工作内容：  "<<this->GZNR << std::endl;
 }
 
 void Employee::Modify()
 {
-    std::cout<<"请输入修改后员工的职工编号、姓名、部门编号，"<<
+    std::cout<<"请输入员工的职工编号、姓名、部门编号，"<<
     "并以 ‘，’号隔开，回车结尾！"<<std::endl;
     int i=0;
     char str;
@@ -109,7 +109,6 @@ class Manager: public Worker
 {
 public:
 
-    char GZNR[32] = {"跪舔大老板！"};
     void ShowInfo();
     void Modify();
     virtual Worker* Getptr();
@@ -124,7 +123,7 @@ protected:
 void Manager::ShowInfo()
 {
     std::cout<< "职工编号： " <<this->ZGBH << "  ";
-    std::cout<< "职工姓名:  "<<this->NAME << "  ";
+    std::cout<< "职工姓名:  "<<this->NAME << "      ";
     std::cout<< "部门编号:  "<<this->BMBH << "  ";
     std::cout<< "工作内容：  "<<this->GZNR << std::endl;
 }
@@ -132,7 +131,7 @@ void Manager::ShowInfo()
 
 void Manager::Modify()
 {
-    std::cout<<"请输入修改后经理的职工编号、姓名、部门编号，"<<
+    std::cout<<"请输入经理的职工编号、姓名、部门编号，"<<
     "并以 ‘，’号隔开，回车结尾！"<<std::endl;
     int i=0;
     char str;
@@ -194,7 +193,6 @@ class Boss: public Worker
 {
 public:
 
-    char GZNR[32] = {"跪舔大老板！"};
     void ShowInfo();
     void Modify();
     virtual Worker* Getptr();
@@ -209,7 +207,7 @@ protected:
 void Boss::ShowInfo()
 {
     std::cout<< "职工编号： " <<this->ZGBH << "  ";
-    std::cout<< "职工姓名:  "<<this->NAME << "  ";
+    std::cout<< "职工姓名:  "<<this->NAME << "      ";
     std::cout<< "部门编号:  "<<this->BMBH << "  ";
     std::cout<< "工作内容：  "<<this->GZNR << std::endl;
 }
@@ -217,7 +215,7 @@ void Boss::ShowInfo()
 
 void Boss::Modify()
 {
-    std::cout<<"请输入修改后老板的职工编号、姓名、部门编号，"<<
+    std::cout<<"请输入老板的职工编号、姓名、部门编号，"<<
     "并以 ‘，’号隔开，回车结尾！"<<std::endl;
     int i=0;
     char str;
