@@ -48,10 +48,11 @@ void Employee::ShowInfo()
 
 void Employee::Modify()
 {
-    std::cout<<"请输入员工的职工编号、姓名、部门编号，"<<
+    std::cout<<"请输入员工的职工编号、姓名、部门编号，工作内容"<<
     "并以 ‘，’号隔开，回车结尾！"<<std::endl;
     int i=0;
     char str;
+    std::cin.ignore(100, '\n');//为了把输入的回车符号吸收掉！
     while( (str = std::cin.get()) != '\n' && str != EOF)
     {
         i=0;
@@ -68,11 +69,17 @@ void Employee::Modify()
         }
         this->NAME[i] = '\0';
         i=0;
-        while((str = std::cin.get()) != '\n')
+        while((str = std::cin.get()) != ',')
         {
             this->BMBH[i++] = str;
         }
         this->BMBH[i] = '\0';
+        i=0;
+        while((str = std::cin.get()) != '\n')
+        {
+            this->GZNR[i++] = str;
+        }
+        this->GZNR[i] = '\0';
         break;
     }
 
@@ -131,10 +138,11 @@ void Manager::ShowInfo()
 
 void Manager::Modify()
 {
-    std::cout<<"请输入经理的职工编号、姓名、部门编号，"<<
+    std::cout<<"请输入员工的职工编号、姓名、部门编号，工作内容"<<
     "并以 ‘，’号隔开，回车结尾！"<<std::endl;
     int i=0;
     char str;
+    std::cin.ignore(100, '\n');//为了把输入的回车符号吸收掉！
     while( (str = std::cin.get()) != '\n' && str != EOF)
     {
         i=0;
@@ -151,11 +159,17 @@ void Manager::Modify()
         }
         this->NAME[i] = '\0';
         i=0;
-        while((str = std::cin.get()) != '\n')
+        while((str = std::cin.get()) != ',')
         {
             this->BMBH[i++] = str;
         }
         this->BMBH[i] = '\0';
+        i=0;
+        while((str = std::cin.get()) != '\n')
+        {
+            this->GZNR[i++] = str;
+        }
+        this->GZNR[i] = '\0';
         break;
     }
 
@@ -215,10 +229,11 @@ void Boss::ShowInfo()
 
 void Boss::Modify()
 {
-    std::cout<<"请输入老板的职工编号、姓名、部门编号，"<<
+    std::cout<<"请输入员工的职工编号、姓名、部门编号，工作内容"<<
     "并以 ‘，’号隔开，回车结尾！"<<std::endl;
     int i=0;
     char str;
+    std::cin.ignore(100, '\n');//为了把输入的回车符号吸收掉！
     while( (str = std::cin.get()) != '\n' && str != EOF)
     {
         i=0;
@@ -235,15 +250,22 @@ void Boss::Modify()
         }
         this->NAME[i] = '\0';
         i=0;
-        while((str = std::cin.get()) != '\n')
+        while((str = std::cin.get()) != ',')
         {
             this->BMBH[i++] = str;
         }
         this->BMBH[i] = '\0';
+        i=0;
+        while((str = std::cin.get()) != '\n')
+        {
+            this->GZNR[i++] = str;
+        }
+        this->GZNR[i] = '\0';
         break;
     }
 
 }
+
 Worker* Boss::Getptr()
 {
     return this;
