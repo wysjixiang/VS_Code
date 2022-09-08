@@ -20,33 +20,33 @@ int main()
         ComSystem.Menu();
         std::cout<<"请输入您的选择："<<std::endl;
         std::cin >> choice;
-        std::cin.ignore(10, '\n');//为了把输入的回车符号吸收掉！  
+        std::cin.ignore(10, '\n');//
         switch(choice)
         {
-		case 0: //退出系统
+		case 0: //
             ComSystem.Exit();
 
 			break;
-		case 1: //添加职工
+		case 1: //
             ComSystem.AddInfo();
 
 			break;
-		case 2: //显示职工
+		case 2: //
             ComSystem.ShowInfo();
 
 			break;
-		case 3: //删除职工
-
-
+		case 3: //删除离职员工信息
+        
+            ComSystem.DeleteInfo();
 			break;
-		case 4: //修改职工
+		case 4: //修改职工信息
             
 			break;
-		case 5: //查找职工
+		case 5: //查找职工信息
 			break;
-		case 6: //排序职工
+		case 6: //按照编号排序
 			break;
-		case 7: //清空文件
+		case 7: //清空所有文件
 			break;
 		default:
 			system("cls");

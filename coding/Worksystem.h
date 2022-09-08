@@ -202,7 +202,34 @@ void Worksystem::ShowInfo()
 
 void Worksystem::DeleteInfo()
 {
-    
+    while(1)
+    {
+        if(this-> num == 0)
+        {
+            std::cout<< "无员工，请让老板先招人！"<<std::endl;
+            return ;
+        }
+        std::string str_BH,str_NAME;
+        std::cout<< "请输入想要删除员工的编号："<<std::endl;
+        std::cin >> str_BH;
+        std::cout<< "请输入想要删除员工的姓名："<<std::endl;
+        std::cin >> str_NAME;
+
+        for(int i=0;i< this->num; i++)
+        {
+            if( (InfoStore[i]->GetZGBH() == str_BH) &&
+            (InfoStore[i]->GetNAME() == str_NAME))
+            {
+                delete InfoStore[i];
+                InfoStore[i] = InfoStore[this->num -1];
+                InfoStore[this->num -1] = NULL;
+                this-> num -=1;
+            }
+        }
+
+    }
+
+    std::cout<< "删除员工信息完成！"<<std::endl;
 }
 
 void Worksystem::ModifyInfo()
