@@ -47,9 +47,13 @@ int main()
             ComSystem.FindInfo();
 			break;
 		case 6: //按照编号排序
+            ComSystem.SortInfo();
 			break;
 		case 7: //清空所有文件
+            ComSystem.ClearInfo();
 			break;
+        case 8:
+            system("cls");
 		default:
 			system("cls");
 			break;

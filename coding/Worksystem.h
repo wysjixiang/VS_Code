@@ -59,7 +59,8 @@ void Worksystem::Menu()
     std::cout<<"*******   4.修改职工信息   *******"<<std::endl;
     std::cout<<"*******   5.查找职工信息   *******"<<std::endl;
     std::cout<<"*******   6.按照编号排序   *******"<<std::endl;
-    std::cout<<"*******   7.清空所有文件?   *******"<<std::endl;
+    std::cout<<"*******   7.清空所有文件   *******"<<std::endl;
+    std::cout<<"*******   8.清空终端窗口   *******"<<std::endl;
     std::cout<<"*********************************"<<std::endl;
 
 }
@@ -489,12 +490,56 @@ void Worksystem::FindInfo()
 
 void Worksystem::SortInfo()
 {
-    
+    std::cout<<"正在开发中...敬请期待"<<std::endl;
 }
 
 void Worksystem::ClearInfo()
 {
-    
+    if(this->num == 0)
+    {
+        std::cout<<"无员工数据，请黑心老板先招人!"<<std::endl;
+        return ;
+    }
+
+    std::cout<<"进入员工信息清除系统..."<<std::endl;
+    char choice;
+    while(1)
+    {   
+        std::cout<< "确定要删除所有员工数据吗? Y/N"<<std::endl;
+        std::cin >> choice;
+        if(choice == 'Y' || choice == 'y' )
+        {
+            //删除所有的指针数组里存放的数据
+            for(int i=0;i<this->num;i++)
+            {
+                if(InfoStore[i] != NULL)
+                {
+                    delete InfoStore[i];
+                    InfoStore[i] == NULL;
+                }
+            }
+            //将InforStore指针也释放掉，重建一个只有初始空间的内存
+            delete [] InfoStore;
+            InfoStore = NULL;
+            InfoStore = new Worker* [addnum];
+            this->num = 0;
+            this->rom = addnum;
+            std::cout<<"已经删库，请准备提桶跑路吧！"<<std::endl;
+            return ;
+        }
+        else if(choice == 'N'|| choice == 'n')
+        {
+            std::cout<< "退出员工信息清除系统..."<<std::endl;
+            return ;
+        }
+        else
+        {
+            std::cout<< "请输入正确的选项！"<<std::endl;
+            std::cin.ignore(100, '\n');//为了把输入的回车符号吸收掉！
+        }
+
+    }
+
 }
 
 Worker* Worksystem::GetInfoAddr()
