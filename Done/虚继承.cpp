@@ -124,6 +124,7 @@ Person(name,classes)
 //注意这个函数。因为多继承的两个父对象，Teacher和Student都包含
 //name，class这个属性，因此子类包含了两个name和两个class属性
 //所以不指定范围的话，是会报错的！
+//注意，基类是必定有一份拷贝的
 void TeacherStudent::Introduce()
 {
     std::cout<< "I am a teacher & student";
@@ -137,10 +138,10 @@ void TeacherStudent::Introduce()
 
 int main()
 {
-    TeacherStudent *a = new TeacherStudent("little pig","class 1");
+    Student *a = new Student("little pig","class 1");
     a->Introduce();
     
     delete a;
-
+    system("pause");
     return 0;
 }

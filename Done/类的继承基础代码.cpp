@@ -1,3 +1,4 @@
+#include <iostream>
 
 // 练习类的继承 -- 编写一个Animal类作为Turtle类和Pig类的基类
 // 基类，子类的概念。 基类可以派生出其他的类，子类从基类派生而来
@@ -13,7 +14,10 @@ public:
         std::cout<<"Animal class constructor!\n"<<std::endl;
     }
 
-    ~Animal(){};
+    ~Animal()
+    {
+        std::cout<<"Animal class destructor!\n"<<std::endl;
+    }
 
     void showname()
     {
@@ -31,6 +35,10 @@ public:
 
     //在子类中的构造函数，可以直接继承父类的，语法如下：
     Pig(std::string name):Animal(name){};
+    ~Pig()
+    {
+        std::cout<<"Pig class destructor!\n"<<std::endl;
+    }
 
     void swim()
     {
@@ -58,18 +66,18 @@ public:
 int main()
 {
 
-    Pig pig1("Little Piggy");
-    pig1.showname();
+    Pig *pig1 = new Pig("Little Piggy");
+    pig1->showname();
 
-    pig1.name = "Big piggy";
-    pig1.showname();
+    pig1->name = "Big piggy";
+    pig1->showname();
 
-    std::cout<<"Weight is: "<< pig1.weight<<std::endl;
+    std::cout<<"Weight is: "<< pig1->weight<<std::endl;
 
-    pig1.modweight(70.9);
+    pig1->modweight(70.9);
 
-    std::cout<<"Weight is: "<< pig1.weight<<std::endl;
-
+    std::cout<<"Weight is: "<< pig1->weight<<std::endl;
+    delete pig1;
     system("pause");
     return 0;
 }

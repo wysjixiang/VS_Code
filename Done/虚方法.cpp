@@ -42,6 +42,6 @@ int main()
     Pet *pig1 = new Pig;    //用 Pig *pig1 = new Pig;就没有问题
     pig1 ->eat();
 
-   // system("pause");
+    system("pause");
     return 0;
 }

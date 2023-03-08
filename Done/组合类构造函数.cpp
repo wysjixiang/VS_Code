@@ -70,6 +70,7 @@ int main()
 {
 
     point p1(0.2,3),p2(4.1,-1.2);
+    point p3(p1),p4(p2);
 
     distance d(p1,p2);
 

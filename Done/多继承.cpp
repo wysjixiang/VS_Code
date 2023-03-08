@@ -133,7 +133,7 @@ int main()
     TeacherStudent *a = new TeacherStudent("little pig","class 1");
     a->Introduce();
     
-    delete a;
-
+    delete a; 
+    system("pause");
     return 0;
 }

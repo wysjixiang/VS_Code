@@ -21,7 +21,7 @@
 
 解决策略->深拷贝：
     自己编写拷贝构造函数！即可在构造函数里面改写，重新为自己的指针
-在堆区开辟一个内存，在将传递的参数值保存即可。这样指针指向的地址就
+在堆区开辟一个内存，再将传递的参数值保存即可。这样指针指向的地址就
 和传递进来的参数的地址区分开了。
 
 
@@ -42,6 +42,7 @@ class Person
 public:
     Person(std::string Name, int cnt)
     {
+        //将传来的数值拷贝到新建的内存中
         name = new char[cnt];
         Name.copy(name,cnt,0);
     }
@@ -55,6 +56,7 @@ public:
         else
         {
             std::cout<<"delete name[]"<<std::endl;
+            //如果需要delete的数据类型是数组，需要加[]
             delete [] name;
             name = NULL;
         }
